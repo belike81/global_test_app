@@ -1,0 +1,9 @@
+class CreateLocations < ActiveRecord::Migration
+  def change
+    create_table :locations do |t|
+      t.string :name
+      t.integer :external_id
+      t.string :secret_code
+    end
+  end
+end
