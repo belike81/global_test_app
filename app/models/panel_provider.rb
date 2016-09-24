@@ -1,6 +1,5 @@
 class PanelProvider < ActiveRecord::Base
-  has_many :countries
-  has_many :location_groups
-  has_many :locations, foreign_key: :external_id
-  has_many :target_groups
+  has_one :country
+  has_one :location_group
+  has_one :target_group
 end
