@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923135555) do
+ActiveRecord::Schema.define(version: 20160924063444) do
 
   create_table "countries", force: :cascade do |t|
     t.string  "country_code"
@@ -41,5 +41,7 @@ ActiveRecord::Schema.define(version: 20160923135555) do
     t.string  "secret_code"
     t.integer "panel_provider_id"
   end
+
+  add_index "target_groups", ["parent_id"], name: "index_target_groups_on_parent_id"
 
 end
