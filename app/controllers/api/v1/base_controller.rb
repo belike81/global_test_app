@@ -8,7 +8,7 @@ class Api::V1::BaseController < ApplicationController
   private
 
   def ensure_country_is_set
-    @country = Country.find_by(country_code: params[:country_code])
+    @country = Country.find_by(country_code: params[:country_code].upcase)
     not_found unless @country
   end
 
