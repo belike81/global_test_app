@@ -3,7 +3,7 @@ class TargetEvaluator
 
   def initialize(params)
     @locations_hash = params[:locations]
-    @country = Country.find_by(country_code: params[:country_code].upcase)
+    @country = Country.find_by(country_code: params[:country_code].to_s.upcase)
     @target_group = TargetGroup.find_by(id: params[:target_group_id])
     @errors = []
   end
