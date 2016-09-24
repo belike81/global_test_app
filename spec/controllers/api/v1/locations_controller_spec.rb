@@ -39,5 +39,12 @@ RSpec.describe Api::V1::LocationsController, type: :controller do
         expect(json).to be_empty
       end
     end
+
+    context 'country not found' do
+      it "returns an error code if no country was found" do
+        get :index, country_code: 'it', format: :json
+        expect(response).not_to be_success
+      end
+    end
   end
 end
