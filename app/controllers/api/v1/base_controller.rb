@@ -1,5 +1,9 @@
 class Api::V1::BaseController < ApplicationController
-  before_action :ensure_country_is_set
+  before_action :ensure_country_is_set, except: :request_token
+
+  def request_token
+    render json: Tokenizer.last.token
+  end
 
   private
 
