@@ -11,12 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924063444) do
+ActiveRecord::Schema.define(version: 20160924064437) do
 
   create_table "countries", force: :cascade do |t|
     t.string  "country_code"
     t.integer "panel_provider_id"
   end
+
+  create_table "countries_target_groups", force: :cascade do |t|
+    t.integer "country_id"
+    t.integer "target_group_id"
+  end
+
+  add_index "countries_target_groups", ["country_id"], name: "index_countries_target_groups_on_country_id"
+  add_index "countries_target_groups", ["target_group_id"], name: "index_countries_target_groups_on_target_group_id"
 
   create_table "location_groups", force: :cascade do |t|
     t.string  "name"
