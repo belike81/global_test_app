@@ -5,12 +5,24 @@ class Api::V1::BaseController < ApplicationController
 
   def ensure_country_is_set
     @country = Country.find_by(country_code: params[:country_code])
-    head(:country_not_found) unless @country
+    not_found unless @country
   end
 
   def authenticate_request
-    authenticate_or_request_with_http_token do |token, options|
-      # Authentication code
+    authenticate_token || unauthorized_access
+  end
+
+  def unauthorized_access
+    render json: 'Not authorized', status: 401
+  end
+
+  def not_found
+    render json: 'Not found', status: 404
+  end
+
+  def authenticate_token
+    authenticate_with_http_token do |token, options|
+      Tokenizer.authenticate_token(token)
     end
   end
 end
