@@ -144,6 +144,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   jwt (~> 1.5)
+  nokogiri
   pg
   rails (= 4.2.0)
   rails-api

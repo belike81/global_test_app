@@ -4,7 +4,7 @@ class TargetEvaluator
   def initialize(params)
     @locations_hash = params[:locations]
     @country = Country.find_by(country_code: params[:country_code])
-    @target_group = TargetGroup.find(params[:target_group_id])
+    @target_group = TargetGroup.find_by(id: params[:target_group_id])
     @errors = []
   end
 
@@ -13,7 +13,15 @@ class TargetEvaluator
   end
 
   def prices
-    0
+    provider_price = ProviderPriceFetcher.new(@country.panel_provider).get_price
+    @locations_hash.map do |location_hash|
+      {
+        id: location_hash['id'],
+        panel_size: location_hash['panel_size'],
+        provider_price: provider_price,
+        total_price: provider_price * location_hash['panel_size'].to_i
+      }
+    end
   end
 
   private

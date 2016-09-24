@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :panel_provider do
-    code { Faker::Code.imei }
+    code { '1' }
   end
 end
